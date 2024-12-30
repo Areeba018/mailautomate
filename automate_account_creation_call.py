@@ -17,36 +17,36 @@ async def random_sleep(min_seconds=10, max_seconds=15):
 
 # Main execution function
 async def main():
-    # # Instance 1 for Admin operations
-    # options_admin = webdriver.ChromeOptions()
-    # admin_driver = await webdriver.Chrome(options=options_admin)
-
-    # try:
-    #     # Login to the mail system (Admin)
-    #     await mail_login(admin_driver)
-
-    #     # Click the mailboxes button (Admin)
-    #     await click_mailboxes_button(admin_driver)
-
-    #     # Add mailbox form (Admin)
-    #     username, password = get_first_username_and_password_from_csv('processed.csv')
-    #     await add_mailbox_form(admin_driver, username, password)
-
-    # finally:
-    #     print("Closing Admin driver...")
-    #     await admin_driver.quit()
-
-    # Instance 2 for User operations
-    options_user = webdriver.ChromeOptions()
-    user_driver = await webdriver.Chrome(options=options_user)
+    # Instance 1 for Admin operations
+    options_admin = webdriver.ChromeOptions()
+    admin_driver = await webdriver.Chrome(options=options_admin)
 
     try:
+        # Login to the mail system (Admin)
+        await mail_login(admin_driver)
 
-        # run stocktwits account csv creation
-        create_extended_csv()
+        # Click the mailboxes button (Admin)
+        await click_mailboxes_button(admin_driver)
 
-        # Run the signup process
-        await stocktwits_signup(user_driver)
+        # Add mailbox form (Admin)
+        username, password = get_first_username_and_password_from_csv('processed.csv')
+        await add_mailbox_form(admin_driver, username, password)
+
+    finally:
+        print("Closing Admin driver...")
+        await admin_driver.quit()
+
+    # # Instance 2 for User operations
+    # options_user = webdriver.ChromeOptions()
+    # user_driver = await webdriver.Chrome(options=options_user)
+
+    # try:
+
+    #     # run stocktwits account csv creation
+    #     create_extended_csv()
+
+    #     # Run the signup process
+    #     await stocktwits_signup(user_driver)
 
         
 
@@ -58,9 +58,9 @@ async def main():
 
         # await confirm_stocktwits_account(user_driver, 'stocktwits_accounts.csv')
 
-    finally:
-        print("Closing User driver...")
-        await user_driver.quit()
+    # finally:
+    #     print("Closing User driver...")
+    #     await user_driver.quit()
 
 
 if __name__ == "__main__":

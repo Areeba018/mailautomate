@@ -67,11 +67,7 @@ async def confirm_stocktwits_account(driver, csv_file="stocktwits_accounts.csv")
         await asyncio.sleep(5)
 
         # Find the email element
-        email_element = await driver.find_element(
-            "xpath", 
-            "//button[@aria-label='Verify Your Email on Stocktwits' and contains(@class, 'md-no-style') and contains(@class, 'md-button')]",
-            timeout=20
-        )
+        email_element = await driver.find_element("xpath", "//button[@aria-label='Verify Your Email on Stocktwits' and contains(@class, 'md-no-style') and contains(@class, 'md-button')]",timeout=70)
 
         # Click the email element
         await email_element.click()  
@@ -82,7 +78,7 @@ async def confirm_stocktwits_account(driver, csv_file="stocktwits_accounts.csv")
         verify_email_element = await driver.find_element(
             "xpath", 
             "//a[text()='Verify Your Email']", 
-            timeout=20
+            timeout=50
         )
 
         # Click the Verify Email link
@@ -98,14 +94,14 @@ async def confirm_stocktwits_account(driver, csv_file="stocktwits_accounts.csv")
         print(f"An error occurred: {e}")
         traceback.print_exc()
 
-# Main function to initialize the driver and process the accounts
-async def main():
-    csv_file = "stocktwits_accounts.csv"  # Path to your CSV file
-    driver = webdriver.Chrome()  # Initialize your Selenium driver
-    try:
-        await confirm_stocktwits_account(driver, csv_file)
-    finally:
-        await driver.quit()
+# # Main function to initialize the driver and process the accounts
+# async def main():
+#     csv_file = "stocktwits_accounts.csv"  # Path to your CSV file
+#     driver = webdriver.Chrome()  # Initialize your Selenium driver
+#     try:
+#         await confirm_stocktwits_account(driver, csv_file)
+#     finally:
+#         await driver.quit()
 
-# Run the script
-asyncio.run(main())
+# # Run the script
+# asyncio.run(main())
